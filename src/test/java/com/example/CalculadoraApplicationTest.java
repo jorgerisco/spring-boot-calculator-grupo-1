@@ -37,4 +37,21 @@ public class CalculadoraApplicationTest {
 		// Assert
 			.andExpect(jsonPath("$.resultado").value(resultado));
     }
+
+    @Test
+    public void restaCuandoResultadoOk() throws Exception {
+		// Arrange
+		String operador1 = "5";
+		String operador2 = "3";
+		String resultado = "2";
+
+		// Act
+		this.mockMvc.perform(get("/calculadora/restar")
+			.param("numero1", operador1)
+			.param("numero2", operador2))
+			.andDo(print()).andExpect(status().isOk())
+	
+		// Assert
+			.andExpect(jsonPath("$.resultado").value(resultado));
+    }
 }
